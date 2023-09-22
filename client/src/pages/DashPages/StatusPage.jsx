@@ -1,4 +1,3 @@
-import React from 'react'
 import LargeStatus from '../../components/LargeStatus'
 import { GET_STATUSES } from '../../utils/queries'
 import { useQuery } from '@apollo/client'
@@ -17,16 +16,16 @@ function StatusPage() {
         </div>
       </section>
       <section className="my-2 lg:my-4 lg:mx-12  rounded-xl bg-gray-700 flex justify-center">
-          <div className="rounded-md mx-4 my-8 justify-center">
-            {loading ? (
+        <div className="rounded-md mx-4 my-8 justify-center">
+          {loading ? (
             <div>Loading...</div>
-          ) : ( statuses.map((status) => (
+          ) : (statuses.map((status) => (
             <LargeStatus
               status={status}
               key={status._id}
             />
           )))}
-          </div>
+        </div>
       </section>
     </div>
   )

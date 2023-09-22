@@ -1,4 +1,3 @@
-import React from 'react'
 import LargeReview from '../../components/LargeReview'
 import LargeStatus from '../../components/LargeStatus'
 import { GET_REVIEWS } from '../../utils/queries'
@@ -21,25 +20,25 @@ function AllPostsPage() {
         </div>
       </section>
       <section className="my-2 lg:my-4 lg:mx-12  rounded-xl bg-gray-700 flex justify-center">
-          <div className="rounded-md mx-4 my-8 justify-center">
-            {loadingReviews ? (
+        <div className="rounded-md mx-4 my-8 justify-center">
+          {loadingReviews ? (
             <div>Loading...</div>
-          ) : ( reviews.map((review) => (
+          ) : (reviews.map((review) => (
             <LargeReview
               review={review}
               key={review._id}
             />
           )))}
 
-            {loadingStatuses ? (
+          {loadingStatuses ? (
             <div>Loading...</div>
-          ) : ( statuses.map((status) => (
+          ) : (statuses.map((status) => (
             <LargeStatus
               status={status}
               key={status._id}
             />
           )))}
-          </div>
+        </div>
       </section>
     </div>
   )

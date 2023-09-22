@@ -1,9 +1,13 @@
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const Finder = () => {
 
   const [searchButtonClicked, setSearchButtonClicked] = useState(false);
+
+  // Needs overhaul to justify unused state
+  // Backend integration to make finder more personalized?
+  // Store a search history on each user to be displayed and tracked?
 
   const [userLatitude, setUserLatitude] = useState(localStorage.getItem('USER_LAT') || '');
   const [userLongitude, setUserLongitude] = useState(localStorage.getItem('USER_LONG') || '');
@@ -27,8 +31,6 @@ const Finder = () => {
   const errorCallback = (error) => {
     console.log(error);
   };
-
-
 
   const processSearch = (searchQuery) => {
     searchByCity(searchQuery);
@@ -104,18 +106,18 @@ const Finder = () => {
           </div>
         </div>
       </div>
-      
+
 
       <div className="bg-gray-800 py-16">
         <h2 className="text-3xl md:text-3xl xl:text-4xl font-bold tracking-tight px-auto text-white text-center ">
           Find Local Brews
         </h2>
-        
+
         <form onSubmit={handleSearchSubmit}>
-        <label htmlFor="default-search" className="mb-2 text-sm font-medium sr-only text-white">Search</label>
-        <div className="relative mx-auto my-20 w-4/5 md:w-3/5 lg:w-3/5">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg
+          <label htmlFor="default-search" className="mb-2 text-sm font-medium sr-only text-white">Search</label>
+          <div className="relative mx-auto my-20 w-4/5 md:w-3/5 lg:w-3/5">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg
                 aria-hidden="true"
                 className="w-5 h-5 text-gray-400"
                 fill="none"
@@ -123,38 +125,38 @@ const Finder = () => {
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               />
+            </div>
+            <input
+              type="search"
+              id="default-search"
+              className="block w-full p-4 pl-10 text-sm border rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Kansas City"
+              value={defaultSearch}
+              onChange={(e) => setDefaultSearch(e.target.value)}
+              required
+            />
+            <button
+              type="submit"
+              id="search-button"
+              className="text-white absolute right-2.5 bottom-2.5 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+            >
+              Search
+            </button>
           </div>
-          <input
-            type="search"
-            id="default-search"
-            className="block w-full p-4 pl-10 text-sm border rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Kansas City"
-            value={defaultSearch}
-            onChange={(e) => setDefaultSearch(e.target.value)}
-            required
-          />
-          <button
-            type="submit"
-            id="search-button"
-            className="text-white absolute right-2.5 bottom-2.5 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
-          >
-            Search
-          </button>
-        </div>
-      </form>
+        </form>
       </div>
-          <div className='bg-gray-800'>
-            {searchButtonClicked && (
-            <div className="m-8 map-cont bg-gray-800">
-              <div className="container mx-auto px-4 bg-gray-800">
-                <h2 className=" bg-gray-800 text-3xl md:text-3xl xl:text-4xl font-bold tracking-tight text-center text-white">Map View</h2>
-              </div>
-            </div>
-            )}
-            <div id="map-view" className="md:h-screen flex justify-center lg:h-screen bg-gray-800">
-            
+      <div className='bg-gray-800'>
+        {searchButtonClicked && (
+          <div className="m-8 map-cont bg-gray-800">
+            <div className="container mx-auto px-4 bg-gray-800">
+              <h2 className=" bg-gray-800 text-3xl md:text-3xl xl:text-4xl font-bold tracking-tight text-center text-white">Map View</h2>
             </div>
           </div>
+        )}
+        <div id="map-view" className="md:h-screen flex justify-center lg:h-screen bg-gray-800">
+
+        </div>
+      </div>
     </div>
   );
 };

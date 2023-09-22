@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Footer() {
     return (
@@ -23,11 +23,11 @@ function Footer() {
 
 function FooterLinks() {
     return <>
-        {["Home", "About", "Finder", "Dashboard"].map(name => {
-            return <li>
-                <Link to={name === "Home" ? "/" : `/${name.toLowerCase()}`} className="block py-2 pl-3 pr-4 rounded hover:bg-gray-700 md:hover:bg-transparent md:p-0 text-white dark:hover:text-white md:hover:bg-transparent border-gray-700">{name}</Link>
+        {["Home", "About", "Finder", "Dashboard"].map(name =>
+            <li>
+                <Link to={name === "Home" ? "/" : `/${name.toLowerCase()}`} className="block py-2 pl-3 pr-4 rounded hover:bg-gray-700  md:p-0 text-white dark:hover:text-white md:hover:bg-transparent border-gray-700">{name}</Link>
             </li>
-        })}
+        )}
     </>
 
 }
